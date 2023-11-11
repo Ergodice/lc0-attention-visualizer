@@ -41,13 +41,13 @@ DISPATCH2[str(BKING)] = lambda retval, row, col: assign_piece2(retval, 11, row, 
 
 def append_plane(planes, ones):
     if ones:
-        return np.append(planes, np.ones((1, 8, 8), dtype=np.float), axis=0)
+        return np.append(planes, np.ones((1, 8, 8), dtype=float), axis=0)
     else:
-        return np.append(planes, np.zeros((1, 8, 8), dtype=np.float), axis=0)
+        return np.append(planes, np.zeros((1, 8, 8), dtype=float), axis=0)
 
 
 def fill_planes(board):
-    planes = np.zeros((12, 8, 8), dtype=np.float)
+    planes = np.zeros((12, 8, 8), dtype=float)
     for row in range(8):
         for col in range(8):
             piece = str(board.piece_at(chess.SQUARES[row * 8 + col]))
@@ -72,14 +72,14 @@ def board2planes(board_):
             b = s_board.mirror() if not board_.turn else s_board.copy()
             retval = np.append(retval, fill_planes(b), axis=0)
         else:
-            retval = np.append(retval, np.zeros((13, 8, 8), dtype=np.float), axis=0)
+            retval = np.append(retval, np.zeros((13, 8, 8), dtype=float), axis=0)
 
     retval = append_plane(retval, bool(board.castling_rights & chess.BB_H1))
     retval = append_plane(retval, bool(board.castling_rights & chess.BB_A1))
     retval = append_plane(retval, bool(board.castling_rights & chess.BB_H8))
     retval = append_plane(retval, bool(board.castling_rights & chess.BB_A8))
     retval = append_plane(retval, not board_.turn)
-    retval = np.append(retval, np.full((1, 8, 8), fill_value=board_.halfmove_clock/99., dtype=np.float), axis=0)
+    retval = np.append(retval, np.full((1, 8, 8), fill_value=board_.halfmove_clock/99., dtype=float), axis=0)
     retval = append_plane(retval, False)
     retval = append_plane(retval, True)
 

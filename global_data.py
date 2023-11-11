@@ -323,7 +323,7 @@ class GlobalData:
                     inputs = None
 
                 outputs = self.model(inputs)
-                self.activations_data = outputs[-1]
+                self.activations_data = outputs["attn_wts"]
                 for i,x in enumerate(self.activations_data):
                     print( 'LAYERS', i, x.shape)
 
