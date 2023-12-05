@@ -324,8 +324,18 @@ class GlobalData:
 
                 outputs = self.model(inputs)
                 self.activations_data = outputs["attn_wts"]
-                for i,x in enumerate(self.activations_data):
-                    print( 'LAYERS', i, x.shape)
+                cat = outputs.get("value_q_cat")
+                if cat is not None:
+                    # convert to numpy array then print
+                    cat = tf.squeeze(cat, axis=0).numpy()
+                    n_buckets = cat.shape[-1]
+                    indices = np.arange(n_buckets) / n_buckets * 2 - 1
+                    cat = np.stack([indices, cat], axis=1)
+                    print("cat: ", np.array_repr(cat))
+                else:
+                    print("cat not found")
+
+                print("keys: ", outputs.keys())
 
                 #smolgen = self.tfp.smol_weight_gen_dense.get_weights()[0].reshape((256, 64, 64))
                 #print('Smolgen')
