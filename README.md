@@ -16,17 +16,17 @@ conda create -n attention-visualizer python=3.8
 conda activate attention-visualizer
 conda install -c anaconda cudatoolkit
 
-pip install tensorflow==2.5
-pip install protobuf==3.12.1
-pip install tensorflow-addons==0.18.0
-pip install pyyaml==6.0
-pip install python-chess==1.999
-pip install dash==2.6.2
+pip install tensorflow==2.10
+pip install protobuf
+pip install tensorflow-addons
+pip install pyyaml
+pip install python-chess
+pip install dash
 ```
 
 3. Clone and setup attention-net-body branch of lczero-training:
 ```
-git clone -b attention-net-body  https://github.com/jkormu/lczero-training.git lczero-training
+git clone -b master  https://github.com/ergodice/lczero-training.git lczero-training
 cd lczero-training
 sh init.sh
 cd ..
@@ -50,6 +50,8 @@ cd ..
         run.py
         ...
     ```
+    * Add `return_attn_wts: true` under `model` in the configuration file
+ 
 
 5. Run the gui
 ```
