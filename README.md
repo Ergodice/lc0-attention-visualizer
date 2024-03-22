@@ -7,7 +7,7 @@ Visualizes attention layer activations of lc0 attention body nets as heatmaps.
 ## Quick start using conda env
 1. Clone this repo:
  ```
-    git clone https://github.com/jkormu/lc0-attention-visualizer.git lc0-attention-visualizer
+    git clone https://github.com/Ergodice/lc0-attention-visualizer.git lc0-attention-visualizer
     cd lc0-attention-visualizer
 ```
 2. Create conda environment and install dependencies for lczero-training and attention visualizer:
