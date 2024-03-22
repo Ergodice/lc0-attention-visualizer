@@ -323,8 +323,12 @@ class GlobalData:
                     inputs = None
 
                 outputs = self.model(inputs)
+
+                print(outputs.keys())
                 self.activations_data = outputs["attn_wts"]
                 cat = outputs.get("value_q_cat")
+                print("q cat and err", outputs.get("value_q").numpy() , outputs.get("value_q_err").numpy() )
+                print("winner", outputs.get("value_winner").numpy())
                 if cat is not None:
                     # convert to numpy array then print
                     cat = tf.squeeze(cat, axis=0).numpy()
